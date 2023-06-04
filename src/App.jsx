@@ -166,14 +166,15 @@ function App() {
                 onClick={handleSubmit}
               />
             </div>
-            <FontAwesomeIcon
-              className="cursor-pointer text-[--color-primary] mr-1"
-              icon={faEllipsisVertical}
-              size="xl"
-              onClick={handleMore}
-            />
+            <div className="cursor-pointer px-2" onClick={handleMore}>
+              <FontAwesomeIcon
+                className="text-[--color-primary] mr-1"
+                icon={faEllipsisVertical}
+                size="xl"
+              />
+            </div>
             <div
-              className={`absolute bottom-16 right-1 shadow-[0_0px_16px_rgba(3,27,137,0.25)] p-1 rounded-md cursor-pointer ${
+              className={`absolute bottom-16 right-1 shadow-[0_0px_16px_rgba(3,27,137,0.25)] p-1 rounded-md cursor-pointer hover:bg-gray-100 ${
                 toggleChat ? "block" : "hidden"
               }`}
               onClick={handleClearChat}
