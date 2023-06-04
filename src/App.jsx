@@ -86,7 +86,7 @@ function App() {
         } md:right-32 md:bottom-32`}
       >
         <div
-          className={`h-[85vh] md:h-[500px] w-screen md:w-[350px] relative ${
+          className={`h-[80vh] md:h-[500px] w-screen md:w-[350px] relative ${
             toggleDisplay ? "block" : "hidden"
           }`}
         >
@@ -167,7 +167,7 @@ function App() {
               />
             </div>
             <FontAwesomeIcon
-              className="cursor-pointer text-[--color-primary]"
+              className="cursor-pointer text-[--color-primary] mr-1"
               icon={faEllipsisVertical}
               size="xl"
               onClick={handleMore}
