@@ -15,6 +15,7 @@ function App() {
   const [toggleChat, setToggleChat] = useState(false);
   const [conversationHistory, setConversationHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -22,6 +23,7 @@ function App() {
   }, [conversationHistory]);
 
   function handleClearChat() {
+    setToggleChat(!toggleChat);
     setConversationHistory([]);
   }
 
@@ -30,6 +32,7 @@ function App() {
   }
 
   function handleContainerDisplay() {
+    setIsVisible(!isVisible);
     setToggleDisplay(!toggleDisplay);
   }
 
@@ -76,15 +79,21 @@ function App() {
   }
 
   return (
-    <div className="h-[332rem] relative">
-      <div className="flex fixed right-32 bottom-40">
+    <div>
+      <div
+        className={`flex absolute bottom-auto md:fixed ${
+          isVisible ? "right-20" : "right-0"
+        } md:right-32 md:bottom-32`}
+      >
         <div
-          className={`h-[500px] relative ${toggleDisplay ? "block" : "hidden"}`}
+          className={`h-[85vh] md:h-[500px] w-screen md:w-[350px] relative ${
+            toggleDisplay ? "block" : "hidden"
+          }`}
         >
-          <div className="bg-[--color-primary] flex w-[350px] justify-between items-center text-white px-3 py-2 rounded-t-xl">
+          <div className="bg-[--color-primary] flex w-full justify-between items-center text-white px-3 py-2 md:rounded-t-xl">
             <div className="flex items-center gap-2">
               <img
-                className="w-[40px] rounded-full"
+                className="w-[30px] md:w-[40px] rounded-full"
                 src={assistantImage}
                 alt="img"
               />
@@ -98,7 +107,10 @@ function App() {
               onClick={handleContainerDisplay}
             />
           </div>
-          <div className="p-1 h-[500px] overflow-y-auto" ref={containerRef}>
+          <div
+            className="p-1 bg-[--color-white] h-full overflow-y-auto"
+            ref={containerRef}
+          >
             <ul className="flex flex-col">
               {conversationHistory.map((item, i) => {
                 return item.role === "user" ? (
@@ -137,13 +149,13 @@ function App() {
               )}
             </ul>
           </div>
-          <div className="bg-[--color-secondary] relative flex justify-around items-center p-3 rounded-b-xl">
-            <div className="bg-[--color-white] flex items-center rounded-md px-2">
+          <div className="bg-[--color-secondary] relative flex gap-5 justify-between items-center p-3 rounded-b-xl">
+            <div className="w-full bg-[--color-white] flex items-center rounded-md px-2">
               <input
                 value={message}
                 type="text"
                 placeholder="Type your message here..."
-                className="h-[35px] w-[250px] outline-none resize-none rounded-md"
+                className="h-[35px] w-full outline-none resize-none rounded-md"
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyDown={handleEnter}
               />
@@ -170,14 +182,16 @@ function App() {
             </div>
           </div>
         </div>
-        <div>
-          <img
-            className="ml-3 rounded-full fixed bottom-16 cursor-pointer"
-            src={assistantImage}
-            alt="img"
-            onClick={handleContainerDisplay}
-          />
-        </div>
+        {isVisible && (
+          <div>
+            <img
+              className="w-[50px] ml-3 rounded-full fixed bottom-2 md:bottom-16 cursor-pointer"
+              src={assistantImage}
+              alt="img"
+              onClick={handleContainerDisplay}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
