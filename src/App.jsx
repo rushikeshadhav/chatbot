@@ -9,6 +9,7 @@ import {
 import "./App.css";
 import axios from "axios";
 
+window.config;
 function App() {
   const [message, setMessage] = useState("");
   const [toggleDisplay, setToggleDisplay] = useState(false);
@@ -32,7 +33,6 @@ function App() {
     textColor: "#fff",
   });
   const containerRef = useRef(null);
-  let config;
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -42,13 +42,13 @@ function App() {
     await axios
       .post("https://chatbot-backend-tj1j.onrender.com/form", formData)
       .then((response) => {
-        config = response.data;
-        setOriginalColors(config.colors);
+        window.config = response.data;
+        setOriginalColors(window.config.colors);
       })
       .catch((error) => {
         console.error(error);
       });
-    setTitle(config.title);
+    setTitle(window.config.title);
   }
 
   useEffect(() => {
