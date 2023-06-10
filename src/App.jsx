@@ -205,7 +205,7 @@ function App() {
           }`}
         >
           <div
-            className="flex w-full justify-between items-cente px-3 py-2 md:rounded-t-xl shadow-[0_0px_16px_rgba(3,27,137,0.25)]"
+            className="flex w-full justify-between items-center px-3 py-2 md:rounded-t-xl shadow-[0_0px_16px_rgba(3,27,137,0.25)]"
             style={{
               backgroundColor: originalColors.primary,
               color: originalColors.textColor,
@@ -254,7 +254,7 @@ function App() {
                     <li
                       className="max-w-[250px] px-3 py-1 rounded-r-xl rounded-tl-xl m-1 text-base self-start"
                       style={{
-                        color: originalColors.textColor,
+                        color: "#000",
                         backgroundColor: originalColors.secondary,
                       }}
                     >
