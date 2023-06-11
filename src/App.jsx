@@ -88,6 +88,20 @@ function App() {
           ];
         });
         setIsLoading(false);
+      })
+      .catch(function (error) {
+        setIsLoading(false);
+        console.log(error.response.status);
+        setConversationHistory((prev) => {
+          return [
+            ...prev,
+            {
+              id: conversationHistory.length + 1,
+              content: error.response.data,
+              role: "assistant",
+            },
+          ];
+        });
       });
   }
 
