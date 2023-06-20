@@ -6,7 +6,6 @@ import {
   faEllipsisVertical,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import "./App.css";
 import axios from "axios";
 
 window.config;
